@@ -26,14 +26,14 @@ namespace UnitTestWithStaticFunctions.prod
 
 		internal static string GetPassword(string account)
 		{
-			// 轉接到 interface 的方法
-			return _profileDao.GetPassword(account);
+			// replace _profileDao filed to static property
+			return MyProfileDao.GetPassword(account);
 		}
 
 		internal static string GetToken(string account)
 		{
-			// 轉接到 interface 的方法
-			return _profileDao.GetToken(account);
+			// replace _profileDao filed to static property
+			return MyProfileDao.GetToken(account);
 		}
 	}
 }
