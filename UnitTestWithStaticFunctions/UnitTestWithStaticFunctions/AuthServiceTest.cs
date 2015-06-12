@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using UnitTestWithStaticFunctions.prod;
 using Shouldly;
+using NSubstitute;
 
 namespace UnitTestWithStaticFunctions
 {
@@ -14,7 +15,15 @@ namespace UnitTestWithStaticFunctions
 			var target = new AuthService();
 			var account = "joey";
 			var password = "1234666666";
-			
+
+			//add IProfileDao stub
+			IProfileDao stubProfileDao = Substitute.For<IProfileDao>();
+			stubProfileDao.GetPassword("joey").ReturnsForAnyArgs("1234");
+			stubProfileDao.GetToken("joey").ReturnsForAnyArgs("666666");
+
+			//inject to ProfileDao static class
+			ProfileDao.MyProfileDao = stubProfileDao;
+
 			var actual = target.IsValid(account, password);
 
 			var expected = true;
