@@ -63,6 +63,7 @@
     <Compile Include="AuthServiceTest.cs" />
     <Compile Include="prod\IProfileDao.cs" />
     <Compile Include="prod\ProfileDao.cs" />
+    <Compile Include="prod\ProfileDaoImpl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace UnitTestWithStaticFunctions.prod
 {
@@ -9,35 +8,32 @@ namespace UnitTestWithStaticFunctions.prod
 	{
 		private static IProfileDao _profileDao;
 
-		////just simulate data source
-		//private static Dictionary<string, string> fakePasswordDataset = new Dictionary<string, string>
-		//{
-		//	{"joey","1234"},
-		//	{"demo","!@#$"},
-		//};
+		//add internal setter for unit test to inject stub object
+		internal static IProfileDao MyProfileDao
+		{
+			get
+			{
+				if (_profileDao == null)
+				{
+					// add a ProfileDaoImpl class and extract the original static function content to this class
+					_profileDao = new ProfileDaoImpl();
+				}
+
+				return _profileDao;
+			}
+			set { _profileDao = value; }
+		}
 
 		internal static string GetPassword(string account)
 		{
 			// 轉接到 interface 的方法
 			return _profileDao.GetPassword(account);
-
-			//if (!fakePasswordDataset.ContainsKey(account))
-			//{
-			//	throw new Exception("account not exist");
-			//}
-
-			//return fakePasswordDataset[account];
 		}
 
 		internal static string GetToken(string account)
 		{
 			// 轉接到 interface 的方法
 			return _profileDao.GetToken(account);
-
-			////just for demo, it's insecure
-			//var seed = new Random((account.GetHashCode() + (int)DateTime.Now.Ticks) & 0x0000FFFF);
-			//var result = seed.Next(0, 999999);
-			//return result.ToString("000000");
 		}
 	}
 }
