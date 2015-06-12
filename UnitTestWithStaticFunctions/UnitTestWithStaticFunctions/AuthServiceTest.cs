@@ -19,6 +19,7 @@ namespace UnitTestWithStaticFunctions
 
 			var expected = true;
 
+			//because of random, it should almost always assert failed
 			actual.ShouldBe(expected);
 		}
 	}
