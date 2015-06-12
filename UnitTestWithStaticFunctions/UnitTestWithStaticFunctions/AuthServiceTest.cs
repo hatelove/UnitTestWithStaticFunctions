@@ -9,6 +9,13 @@ namespace UnitTestWithStaticFunctions
 	[TestClass]
 	public class AuthServiceTest
 	{
+		[TestInitialize]
+		public void TestInit()
+		{
+			//reset stub object
+			ProfileDao.MyProfileDao = null;
+		}
+
 		[TestMethod]
 		public void Test_IsValid_joey_1234666666_Should_Return_True()
 		{
