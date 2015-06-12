@@ -13,7 +13,7 @@ namespace UnitTestWithStaticFunctions
 		public void TestInit()
 		{
 			//reset stub object
-			ProfileDao.MyProfileDao = null;
+			//ProfileDao.MyProfileDao = null;
 		}
 
 		[TestMethod]
@@ -28,8 +28,9 @@ namespace UnitTestWithStaticFunctions
 			stubProfileDao.GetPassword("joey").ReturnsForAnyArgs("1234");
 			stubProfileDao.GetToken("joey").ReturnsForAnyArgs("666666");
 
-			//inject to ProfileDao static class
-			ProfileDao.MyProfileDao = stubProfileDao;
+			////inject to ProfileDao static class
+			//ProfileDao.MyProfileDao = stubProfileDao;
+			target.MyProfileDao = stubProfileDao;
 
 			var actual = target.IsValid(account, password);
 
